@@ -1,0 +1,14 @@
+{
+  "name": "chatter",
+  "description": "A chat app",
+  "version": "0.1.0",
+  "devDependencies": {
+    "express": "~4.11.2",
+    "gulp": "~3.8.11",
+    "gulp-browserify": "~0.5.1",
+    "gulp-concat": "~2.5.0",
+    "react": "~0.12.2",
+    "reactify": "~1.0.0",
+    "socket.io": "~1.3.4"
+  }
+}
