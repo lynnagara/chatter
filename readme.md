@@ -1,3 +1,3 @@
 # Chatter
 
-A chat app
+A chat app in ES6
