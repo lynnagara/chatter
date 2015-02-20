@@ -1,9 +1,10 @@
 var gulp = require('gulp');
-var server = require('gulp-express');
 var browserify = require('gulp-browserify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var usemin = require('gulp-usemin');
+var node;
+var spawn = require('child_process').spawn;
 
 gulp.task('css', function () {
 	gulp.src('apps/client/style/*.scss')
@@ -30,6 +31,11 @@ gulp.task('usemin', function () {
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('node', function () {
+	if (node) node.kill();
+	node = spawn('node', ['app.js'], {stdio: 'inherit'})
+});
+
 gulp.task('default', ['copy', 'usemin', 'css']);
 
 gulp.task('watch', function () {
@@ -37,7 +43,13 @@ gulp.task('watch', function () {
 });
 
 gulp.task('server', function () {
-	server.run(['apps/server/app.js']);
+	gulp.run('node');
+	gulp.watch('apps/client/**/*.*', ['default','node']);
+
 });
 
+
+process.on('exit', function() {
+	if (node) node.kill();
+});
 
