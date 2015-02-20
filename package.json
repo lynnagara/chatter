@@ -3,7 +3,6 @@
   "description": "A chat app",
   "version": "0.1.0",
   "devDependencies": {
-    "express": "~4.11.2",
     "gulp": "~3.8.11",
     "gulp-bower": "0.0.10",
     "gulp-browserify": "~0.5.1",
@@ -17,5 +16,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/lynnagara/chatter.git"
+  },
+  "dependencies": {
+    "express": "^4.11.2",
+    "node-static": "^0.7.6"
   }
 }
