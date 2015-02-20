@@ -22,6 +22,12 @@ gulp.task('browserify', function() {
 gulp.task('copy', function () {
 	gulp.src('apps/client/js/**/*')
 		.pipe(gulp.dest('dist/js'));
+	gulp.src('apps/client/templates/**/*')
+		.pipe(gulp.dest('dist/templates'));
+	gulp.src('apps/client/bower_components/**/*')
+		.pipe(gulp.dest('dist/bower_components'));
+	gulp.src('apps/client/index.html')
+		.pipe(gulp.dest('dist'));
 });
 
 gulp.task('usemin', function () {
@@ -36,17 +42,15 @@ gulp.task('node', function () {
 	node = spawn('node', ['app.js'], {stdio: 'inherit'})
 });
 
-gulp.task('default', ['copy', 'usemin', 'css']);
+gulp.task('default', ['copy', 'css']);
 
 gulp.task('watch', function () {
 	gulp.watch('apps/client/**/*.*', ['default']);
 });
 
-gulp.task('server', function () {
-	gulp.run('node');
-	gulp.watch('apps/client/**/*.*', ['default','node']);
+gulp.task('build', ['usemin']);
 
-});
+gulp.task('server', ['default', 'node']);
 
 
 process.on('exit', function() {
