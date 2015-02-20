@@ -3,16 +3,11 @@
 	<head>
 		<title>Chatter</title>
 		<link rel="stylesheet" href="./style/app.css">
+		<script src="js/lib/react.js"></script>
+		<script src="js/lib/JSXTransformer.js"></script>
 	</head>
 	<body>
-		<nav>nav</nav>
 		<div id="app"></div>
-
-		<script type="text/template" name="home">
-			<div>
-				Home template
-			</div>
-		</script>
 		
 		<!-- build:js js/vendor.js -->
 		<script src="./bower_components/jquery/dist/jquery.js"></script>
@@ -21,7 +16,11 @@
 		<script src="./bower_components/traceur/traceur.js"></script>
 		<script src="./bower_components/es6-module-loader/dist/es6-module-loader.js"></script>
 		<!-- endbuild -->
-		<script>System.import('js/main');</script>
+
+		<!-- <script>System.import('js/main');</script>-->
+		<script type="text/jsx;harmony=true" src='js/app/components/nav.js'></script>
+		<script type="text/jsx" src='js/app/components/app.js'></script>
+		<!-- <script>System.import('js/main');</script> -->
 
 	</body>
 </html>

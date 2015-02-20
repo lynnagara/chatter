@@ -10,13 +10,13 @@ class Router extends Backbone.Router {
 	}
 
 	home () {
-		var view = new HomeView();
+		// var view = new HomeView();
 		// $('#app').html(view.render().$el);
 
-		$.get('/templates/home.html', function (data) {
-			template = _.template(data, {  });
-			this.$el.html(template);  
-		}, 'html');
+		// $.get('/templates/home.html', function (data) {
+		// 	template = _.template(data, {  });
+		// 	this.$el.html(template);  
+		// }, 'html');
 
 
 
