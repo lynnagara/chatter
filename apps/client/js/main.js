@@ -1,9 +1,14 @@
 import Router from './router';
 
 $(() => {
-		new Router();
-		Backbone.history.start();
+	var properties = {
+		host: location.host
+	}		
 
+	new Router();
+	Backbone.history.start();
+	var exampleSocket = new WebSocket('ws://' + location.host, 'echo');
+	console.log(exampleSocket)
 		/** @jsx React.DOM */
 		// var React = require('react');
 
