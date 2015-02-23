@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 class JoinChat extends React.Component {
 	constructor(props) {
 		super(props);

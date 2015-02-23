@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 React.render(
 	<div>
 		<Nav />

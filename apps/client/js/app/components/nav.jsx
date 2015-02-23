@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 class Nav extends React.Component {
 	constructor(props) {
 		super(props);

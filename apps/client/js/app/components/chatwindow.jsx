@@ -1,5 +1,4 @@
-/** @jsx React.DOM */
-class UserList extends React.Component {
+class ChatWindow extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -7,7 +6,7 @@ class UserList extends React.Component {
 	render() {
 		return (
 			<div>
-				This is the list of users
+				This is the chat window
 			</div>
 		);
 	}
