@@ -50,7 +50,7 @@ gulp.task('watch', function () {
 
 gulp.task('build', ['usemin']);
 
-gulp.task('server', ['default', 'node']);
+gulp.task('server', ['default', 'node', 'watch']);
 
 
 process.on('exit', function() {

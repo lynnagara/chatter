@@ -1,0 +1,19 @@
+html, body, p, div {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #app {
+	height: 100%;
+}
+
+.row {
+	position: absolute;
+	width: 100%;
+	height: 100%; // Fallback for older browers
+	height: calc(100% - 52px);
+}
+
+#chatColumn, #userColumn {
+	height: 100%;
+}

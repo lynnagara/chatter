@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var expressWs = require('express-ws')(app);
 
+// Import modules
+// var test = require('./apps/server/test');
+
 app.use(express.static(__dirname + '/dist'));
 
 app.get('/', function (req, res) {
@@ -10,8 +13,13 @@ app.get('/', function (req, res) {
 	res.sendFile(path);
 });
 
+app.post('/chat', function (req, res) {
+	console.log('create a chat')
+  res.send('Create a chat room and return its slug');
+});
+
 app.ws('/echo', function(ws, req) {
-	console.log('echo');
+
 	ws.on('message', function(msg) {
 		ws.send(msg);
 	});

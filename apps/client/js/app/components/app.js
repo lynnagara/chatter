@@ -2,8 +2,15 @@
 React.render(
 	<div>
 		<Nav />
-		react app
-
+		<div className="row">
+			<div className="nine columns" id="chatColumn">
+				<JoinChat />
+				<ChatWindow />
+			</div>
+			<div className="three columns" id="userColumn">
+				<UserList />
+			</div>
+		</div>
 	</div>, 
 	document.getElementById('app')
 );
