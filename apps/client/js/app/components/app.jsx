@@ -3,18 +3,27 @@ import JoinChat from './joinchat.jsx';
 import ChatWindow from './chatwindow.jsx';
 import UserList from './userlist.jsx';
 
-React.render(
-	<div>
-		<Nav />
-		<div className="row">
-			<div className="nine columns" id="chatColumn">
-				<JoinChat />
-				<ChatWindow />
+class APP extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<div>
+				<Nav />
+				<div className="row">
+					<div className="nine columns" id="chatColumn">
+						<JoinChat />
+						<ChatWindow />
+					</div>
+					<div className="three columns" id="userColumn">
+						<UserList />
+					</div>
+				</div>
 			</div>
-			<div className="three columns" id="userColumn">
-				<UserList />
-			</div>
-		</div>
-	</div>, 
-	document.getElementById('app')
-);
+		);
+	}
+}
+
+export default APP;
