@@ -6,6 +6,7 @@
     "babel": "^4.4.6",
     "babel-core": "^4.4.6",
     "babel-loader": "^4.0.0",
+    "es6-promise": "^2.0.1",
     "express": "^4.11.2",
     "express-ws": "^0.2.4",
     "gulp": "~3.8.11",

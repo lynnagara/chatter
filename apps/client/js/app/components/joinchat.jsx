@@ -1,14 +1,15 @@
+import Actions from '../actions/actions.js';
+
 class JoinChat extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {username: 'lyn'}
+		this.state = {username: ''}
 	}
 
 	submitForm() {
 		event.preventDefault();
-		// Move this to Actions/Dispatcher
-		websocket.send("Here's some text that the server is urgently awaiting!");
-
+		var act = new Actions();
+		console.log(act.connect())
 
 	}
 

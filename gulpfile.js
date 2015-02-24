@@ -14,7 +14,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('webpack', function() {
-	gulp.src('apps/client/js/main.jsx')
+	gulp.src('apps/client/js/main.js')
 		.pipe(webpack( require('./webpack.config.js') ))
 		.pipe(gulp.dest('dist/js/'));	
 });

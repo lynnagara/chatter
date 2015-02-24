@@ -1,30 +1,24 @@
-// import HomeView from './app/views/home';
+import APP from './app/components/app.jsx';
 
-// class Router extends Backbone.Router {
-// 	constructor() {
-// 		this.routes = {
-// 			'': 'home',
-// 			'test': 'test'
-// 		};
-// 		super();
-// 	}
+class Router extends Backbone.Router {
+	constructor () {
+		this.routes = {
+			'': 'home',
+			'test': 'test'
+		};
+		super();
+	}
 
-// 	home () {
-// 		// var view = new HomeView();
-// 		// $('#app').html(view.render().$el);
+	home () {
+		React.render(
+			<APP />, 
+			document.getElementById('app')
+		);
+	}
 
-// 		// $.get('/templates/home.html', function (data) {
-// 		// 	template = _.template(data, {  });
-// 		// 	this.$el.html(template);  
-// 		// }, 'html');
+	test () {
+		console.log('test');
+	}
+}
 
-
-
-// 	}
-
-// 	test () {
-// 		console.log('test');
-// 	}
-// }
-
-// export default Router;
+export default Router;
