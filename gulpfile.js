@@ -1,12 +1,15 @@
 var gulp = require('gulp');
 var react = require('gulp-react');
-var browserify = require('gulp-browserify');
+var webpack = require('gulp-webpack');
+// var browserify = require('gulp-browserify');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var usemin = require('gulp-usemin');
 var babel = require('gulp-babel');
 var node;
 var spawn = require('child_process').spawn;
+
+
 
 gulp.task('css', function () {
 	gulp.src('apps/client/style/*.scss')
@@ -21,12 +24,18 @@ gulp.task('jsx', function() {
 		.pipe(gulp.dest('dist/js/app/components'));	
 })
 
-gulp.task('browserify', function() {
-	gulp.src('apps/client/js/main.js')
-		.pipe(browserify({transform: 'reactify'}))
-		.pipe(concat('main.js'))
-		.pipe(gulp.dest('dist/js'));
-});
+gulp.task('webpack', function() {
+	gulp.src('apps/client/js/app/components/app.jsx')
+		.pipe(webpack( require('./webpack.config.js') ))
+		.pipe(gulp.dest('dist/js/'));	
+})
+
+// gulp.task('browserify', function() {
+// 	gulp.src('apps/client/js/main.js')
+// 		.pipe(browserify({transform: 'reactify'}))
+// 		.pipe(concat('main.js'))
+// 		.pipe(gulp.dest('dist/js'));
+// });
 
 gulp.task('copy', function () {
 	gulp.src('apps/client/js/lib/**/*')
@@ -53,7 +62,7 @@ gulp.task('node', function () {
 	node = spawn('node', ['app.js'], {stdio: 'inherit'})
 });
 
-gulp.task('default', ['jsx', 'copy', 'css']);
+gulp.task('default', ['webpack', 'copy', 'css']);
 
 gulp.task('watch', function () {
 	gulp.watch('apps/client/**/*.*', ['default']);

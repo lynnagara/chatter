@@ -31,3 +31,5 @@ class JoinChat extends React.Component {
 		);
 	}
 }
+
+export default JoinChat;

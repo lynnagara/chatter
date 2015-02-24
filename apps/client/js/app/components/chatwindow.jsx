@@ -11,3 +11,5 @@ class ChatWindow extends React.Component {
 		);
 	}
 }
+
+export default ChatWindow;

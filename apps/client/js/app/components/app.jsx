@@ -1,3 +1,8 @@
+import Nav from './nav.jsx';
+import JoinChat from './joinchat.jsx';
+import ChatWindow from './chatwindow.jsx';
+import UserList from './userlist.jsx';
+
 React.render(
 	<div>
 		<Nav />
