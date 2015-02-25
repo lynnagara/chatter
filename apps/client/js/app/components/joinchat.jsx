@@ -9,7 +9,7 @@ class JoinChat extends React.Component {
 	submitForm() {
 		event.preventDefault();
 		var act = new Actions();
-		console.log(act.connect())
+		act.connect('test!');
 
 	}
 

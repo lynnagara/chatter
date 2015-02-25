@@ -23,5 +23,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/lynnagara/chatter.git"
+  },
+  "dependencies": {
+    "flux": "^2.0.1",
+    "keymirror": "^0.1.1"
   }
 }
