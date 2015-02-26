@@ -1,7 +1,7 @@
 import keyMirror from 'keymirror';
 
 module.exports = keyMirror({
-	CONNECT_WEBSOCKET: null,
+	CONNECT_USER: null,
   TODO_CREATE: null,
   TODO_COMPLETE: null,
   TODO_DESTROY: null,

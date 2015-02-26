@@ -5,9 +5,15 @@ import {EventEmitter} from 'events';
 class Store {
 
 	connectWebsocket() {
-		console.log('creating the websocket connection');
-		let websocket = new WebSocket('ws://' + location.host, 'echo');
-		console.log(websocket) 
+		console.log('creating the websocket connection...');
+		var ws = new WebSocket('ws://' + location.host);
+		ws.onopen = function(event) {
+			console.log('connected to ' + event.currentTarget.URL)
+		};
+		ws.onerror = function(error) {
+		  console.log('WebSocket Error: ' + error);
+		};
+
 	}
 
 	constructor () {
@@ -21,7 +27,7 @@ class Store {
 		AppDispatcher.register(action => {
 		  var text;
 		  switch(action.actionType) {
-		    case Constants.CONNECT_WEBSOCKET:
+		    case Constants.CONNECT_USER:
 		      text = action.text.trim();
 		      if (text !== '') {
 		        this.connectWebsocket(text);

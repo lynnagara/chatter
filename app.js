@@ -1,31 +1,49 @@
-var express = require('express');
-var app = express();
-var expressWs = require('express-ws')(app);
+var http = require('http');
+var url = require('url');
+var path = require('path');
+var fs = require('fs');
+var websocketserver = require('websocket').server;
 
-// Import modules
-// var test = require('./apps/server/test');
 
-app.use(express.static(__dirname + '/dist'));
+var server = http.createServer(function(req, res) {
+	// Serve static files
+	if (req.url === '/') {
+		req.url = '/index.html';
+	}
 
-app.get('/', function (req, res) {
-	var uid = req.params.uid;
-	var path = req.params[0] ? req.params[0] : 'index.html';
-	res.sendFile(path);
+	fs.readFile(__dirname + '/dist' + req.url, function (err,data) {
+    if (err) {
+      res.writeHead(404);
+      res.end(JSON.stringify(err));
+      return;
+    }
+    res.writeHead(200);
+    // res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end(data);
+  });
+	return;
+});
+server.listen(5000, function() { });
+
+// create the server
+wsServer = new websocketserver({
+    httpServer: server
 });
 
-app.post('/chat', function (req, res) {
-	console.log('create a chat')
-  res.send('Create a chat room and return its slug');
+// WebSocket server
+wsServer.on('request', function(request) {
+    var connection = request.accept(null, request.origin);
+
+    // This is the most important callback for us, we'll handle
+    // all messages from users here.
+    connection.on('message', function(message) {
+        if (message.type === 'utf8') {
+            // process WebSocket message
+            console.log('websocket connection received');
+        }
+    });
+
+    connection.on('close', function(connection) {
+        // close user connection
+    });
 });
-
-app.ws('/echo', function(ws, req) {
-
-	ws.on('message', function(msg) {
-		ws.send(msg);
-	});
-});
-
-app.listen(5000, function () {
-	console.log('listening on 5000');
-});
-

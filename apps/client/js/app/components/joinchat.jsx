@@ -9,8 +9,7 @@ class JoinChat extends React.Component {
 	submitForm() {
 		event.preventDefault();
 		var act = new Actions();
-		act.connect('test!');
-
+		act.connectUser(this.state.username);
 	}
 
 	handleChangeName() {
@@ -19,16 +18,15 @@ class JoinChat extends React.Component {
 
 	render() {
 		return (
-			<form onSubmit={this.submitForm}>
+			<form onSubmit={this.submitForm.bind(this)}>
 				<div>
 					<label>Join the chat</label>
 				</div>
 				<div>
 					<input type="text" value={this.state.username} onChange={this.handleChangeName.bind(this)} placeholder="Enter your name" />
 				</div>
-				<button>Sign in</button>
+				<button>Join Chat</button>
 			</form>
-
 		);
 	}
 }

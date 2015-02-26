@@ -6,10 +6,10 @@ class Actions {
 
 	}
 
-	connect (text) {
+	connectUser (username) {
 		AppDispatcher.handleViewAction({
-      actionType: Constants.CONNECT_WEBSOCKET,
-      text: 'This is my text'
+      actionType: Constants.CONNECT_USER,
+      text: username
     });
 	}
 }
