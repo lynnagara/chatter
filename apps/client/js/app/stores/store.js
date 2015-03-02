@@ -1,19 +1,13 @@
 import AppDispatcher from '../dispatchers/app-dispatcher.js';
 import Constants from '../constants/constants.js';
 import {EventEmitter} from 'events';
+import WebAPIUtils from '../utils/webapi.js';
 
 class Store {
 
-	connectWebsocket() {
-		console.log('creating the websocket connection...');
-		var ws = new WebSocket('ws://' + location.host);
-		ws.onopen = function(event) {
-			console.log('connected to ' + event.currentTarget.URL)
-		};
-		ws.onerror = function(error) {
-		  console.log('WebSocket Error: ' + error);
-		};
-
+	connectWebsocket(text) {
+		var apiCall = new WebAPIUtils();
+		apiCall.connectWebsocket(text);
 	}
 
 	constructor () {
