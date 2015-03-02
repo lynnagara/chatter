@@ -8,8 +8,10 @@ class JoinChat extends React.Component {
 
 	submitForm() {
 		event.preventDefault();
-		var act = new Actions();
-		act.connectUser(this.state.username);
+		if (this.state.username) {
+			var act = new Actions();
+			act.connectUser(this.state.username);			
+		}
 	}
 
 	handleChangeName() {

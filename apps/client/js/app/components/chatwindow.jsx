@@ -12,6 +12,7 @@ class ChatWindow extends React.Component {
 	render() {
 		return (
 			<div>
+				<div>connected user: {this.props.user}</div>
 				<div>
 					This is the chat window
 				</div>

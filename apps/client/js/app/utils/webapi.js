@@ -1,17 +1,23 @@
+import Actions from '../actions/actions.js';
+
 class WebAPIUtils {
 
 	constructor() {
-		
+
 	}
 
-	connectWebsocket() {
-		console.log('creating the websocket connection...');
+	connectWebsocket(username) {
 		var ws = new WebSocket('ws://' + location.host);
 		ws.onopen = function(event) {
-			console.log('connected to ' + event.currentTarget.URL)
+			// Check if the username is valid
+			ws.send(JSON.stringify({username: username, action: 'setUsername'}));
+
+			var act = new Actions();
+			act.userConnectionSuccess();
 		};
 		ws.onerror = function(error) {
-		  console.log('WebSocket Error: ' + error);
+			var act = new Actions();
+			act.userConnectionFailure();
 		};
 
 	}

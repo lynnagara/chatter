@@ -7,7 +7,7 @@ const AppDispatcher = Object.assign(new Dispatcher(), {
 
   handleServerAction: function (action) {
     const payload = {
-      actionType: PayloadSources.SERVER_ACTION,
+      actionType: action.actionType,
       text: action
     };
     this.dispatch(payload);

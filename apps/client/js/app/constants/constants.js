@@ -1,12 +1,10 @@
 import keyMirror from 'keymirror';
 
 module.exports = keyMirror({
+	// View actions
 	CONNECT_USER: null,
-  TODO_CREATE: null,
-  TODO_COMPLETE: null,
-  TODO_DESTROY: null,
-  TODO_DESTROY_COMPLETED: null,
-  TODO_TOGGLE_COMPLETE_ALL: null,
-  TODO_UNDO_COMPLETE: null,
-  TODO_UPDATE_TEXT: null
+	// Server actions
+	USER_CONNECTION_SUCCESS: null,
+	USER_CONNECTION_FAILURE: null,
+	USER_CONNECTION_DISCONNECTED: null
 });
