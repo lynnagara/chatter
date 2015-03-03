@@ -21,13 +21,24 @@ class Actions {
 	}
 
 	userConnectionFailure () {
-
+		AppDispatcher.handleServerAction({
+      actionType: Constants.USER_CONNECTION_FAILURE
+    });
 	}
 
 	userConnectionDisconnected () {
 
 	}
 
+	userJoinedChat () {
+		AppDispatcher.handleServerAction({
+      actionType: Constants.USER_JOINED_CHAT
+    });
+	}
+
+	updateUserList () {
+
+	}
 
 }
 

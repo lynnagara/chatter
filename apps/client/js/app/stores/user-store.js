@@ -3,12 +3,13 @@ import Constants from '../constants/constants.js';
 import {EventEmitter} from 'events';
 import WebAPIUtils from '../utils/webapi.js';
 
-class Store {
 
-	connectWebsocket (text) {
-		var apiCall = new WebAPIUtils();
-		apiCall.connectWebsocket(text);
-	}
+var _connectWebsocket = (text) => {
+	var apiCall = new WebAPIUtils();
+	apiCall.connectWebsocket(text);
+}
+
+class UserStore {
 
 	connectedUser () {
 		return 'lyn';
@@ -16,21 +17,25 @@ class Store {
 
 	constructor (props) {
 		let CHANGE_EVENT = 'change';
+
 		Object.assign(this, EventEmitter.prototype, {
-			emitChange: function() {
-				console.log('emit change...')
+			emitChange: () => {
 				this.emit(CHANGE_EVENT);
 			},
 
-			addChangeListener: function (callback) {
-				console.log('listening...')
+			addChangeListener: (callback) => {
 				this.on('change', callback);
 			},
 
-			removeChangeListener: function (callback) {
+			removeChangeListener: (callback) => {
 				console.log('stop listening...')
 				this.removeListener('change', callback);
+			},
+
+			getUserlist: () => {
+				return ['asdf'];
 			}
+
 		});
 
 		AppDispatcher.register(action => {
@@ -39,7 +44,7 @@ class Store {
 				case Constants.CONNECT_USER:
 					text = action.text.trim();
 					if (text !== '') {
-						this.connectWebsocket(text);
+						_connectWebsocket(text);
 					}
 					this.emitChange();
 					// Store.emitChange();
@@ -56,6 +61,10 @@ class Store {
 					console.log('user connection disconnected')
 					this.emitChange();
 					break;
+				case Constants.USER_JOINED_CHAT:
+					console.log('user joined chat')
+					this.emitChange();
+					break;
 		    default:
 		      // nada
 		  }
@@ -64,4 +73,6 @@ class Store {
 	}
 }
 
-export default Store;
+var userstore = new UserStore();
+
+export default userstore;

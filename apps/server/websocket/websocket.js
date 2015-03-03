@@ -17,10 +17,13 @@ function setUsername(username, ws, connection) {
 	} else {
 		// Continue on...
 		connectedClients.push(userObj);
+    connection.sendUTF(JSON.stringify({action:'joinedChat', data: {usernames: getUsernames(connectedClients)}}));
 
-    // rebroadcast command to all clients
+    // rebroadcast command to all other clients
     connectedClients.forEach(function(client) {
-      client.connection.sendUTF(JSON.stringify({action: 'updateUsers', usernames: getUsernames(connectedClients)}));
+      if (client.connection !== connection) {
+        client.connection.sendUTF(JSON.stringify({action: 'updatedUsers', data: {usernames: getUsernames(connectedClients)}}));
+      }
     });
 
 	}

@@ -19,8 +19,22 @@ class WebAPIUtils {
 			var act = new Actions();
 			act.userConnectionFailure();
 		};
-		ws.onmessage = (message) =>{
-			console.log(message.data);    
+		ws.onmessage = (data) => {
+			var message = JSON.parse(data.data);
+			if (message.action) {
+				switch (message.action) {
+					case 'joinedChat':
+						var act = new Actions();
+						act.userJoinedChat();
+						break;
+					case 'updatedUsers':
+						var act = new Actions();
+						act.updateUserList();
+						break;
+				default:
+					// nada
+				}				
+			}
 		}
 
 

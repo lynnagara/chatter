@@ -6,5 +6,6 @@ module.exports = keyMirror({
 	// Server actions
 	USER_CONNECTION_SUCCESS: null,
 	USER_CONNECTION_FAILURE: null,
-	USER_CONNECTION_DISCONNECTED: null
+	USER_CONNECTION_DISCONNECTED: null,
+	USER_JOINED_CHAT: null
 });

@@ -2,14 +2,13 @@ import Nav from './nav.jsx';
 import JoinChat from './joinchat.jsx';
 import ChatWindow from './chatwindow.jsx';
 import UserList from './userlist.jsx';
-import Store from '../stores/store';
+import UserStore from '../stores/user-store';
 
 
 class APP extends React.Component {
 
 	// Method to retrieve application state from store
 	getAppState () {
-		console.log('====')
 	  return {
 	  	connectedUser: 'lyn'
 	  };
@@ -24,16 +23,12 @@ class APP extends React.Component {
 	}
 
 	_onChange () {
+		console.log('changed')
     // this.setState(getAppState());
   }
 
   componentDidMount () {
-  	// this.store = new Store();
-		var store = new Store();
-  	store.addChangeListener(this._onChange);
-  	// console.log(store.addChangeListener)
-  	// console.log(Store)
-    // Store.addChangeListener(this._onChange);
+  	UserStore.addChangeListener(this._onChange);
   }
 
 	render() {
