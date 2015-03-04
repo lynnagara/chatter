@@ -21,8 +21,6 @@ gulp.task('webpack', function() {
 
 
 gulp.task('copy', function () {
-	gulp.src('apps/client/js/lib/**/*')
-		.pipe(gulp.dest('dist/js/lib'));
 	gulp.src('apps/client/templates/**/*')
 		.pipe(gulp.dest('dist/templates'));
 	gulp.src('apps/client/bower_components/**/*')
