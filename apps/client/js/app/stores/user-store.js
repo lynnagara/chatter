@@ -9,6 +9,13 @@ var _connectWebsocket = (text) => {
 	apiCall.connectWebsocket(text);
 }
 
+var _userList = []
+
+var _updateUserList = (users) => {
+	_userList = users;
+}
+
+
 class UserStore {
 
 	connectedUser () {
@@ -33,7 +40,7 @@ class UserStore {
 			},
 
 			getUserlist: () => {
-				return ['asdf'];
+				return _userList;
 			}
 
 		});
@@ -50,7 +57,6 @@ class UserStore {
 					// Store.emitChange();
 					break;
 				case Constants.USER_CONNECTION_SUCCESS:
-					console.log('user connection success')
 					this.emitChange();
 					break;
 				case Constants.USER_CONNECTION_FAILURE:
@@ -62,7 +68,7 @@ class UserStore {
 					this.emitChange();
 					break;
 				case Constants.USER_JOINED_CHAT:
-					console.log('user joined chat')
+					_updateUserList(action.data.usernames);
 					this.emitChange();
 					break;
 		    default:

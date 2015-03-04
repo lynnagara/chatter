@@ -8,7 +8,7 @@ const AppDispatcher = Object.assign(new Dispatcher(), {
   handleServerAction: function (action) {
     const payload = {
       actionType: action.actionType,
-      text: action
+      data: action
     };
     this.dispatch(payload);
   },

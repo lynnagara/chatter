@@ -30,9 +30,10 @@ class Actions {
 
 	}
 
-	userJoinedChat () {
+	userJoinedChat (data) {
 		AppDispatcher.handleServerAction({
-      actionType: Constants.USER_JOINED_CHAT
+      actionType: Constants.USER_JOINED_CHAT,
+      usernames: data.usernames
     });
 	}
 

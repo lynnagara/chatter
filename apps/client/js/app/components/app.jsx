@@ -23,7 +23,6 @@ class APP extends React.Component {
 	}
 
 	_onChange () {
-		console.log('changed')
     // this.setState(getAppState());
   }
 

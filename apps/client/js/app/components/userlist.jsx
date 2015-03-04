@@ -9,12 +9,8 @@ class UserList extends React.Component {
 		}
 	}
 
-	_getUserList () {
-		UserStore.getUserList();		
-	}
-
 	_onChange () {
-    this.setState({users: ['1','2']});
+    this.setState({users: UserStore.getUserlist()});
   }
 
   componentDidMount () {

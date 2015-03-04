@@ -25,7 +25,7 @@ class WebAPIUtils {
 				switch (message.action) {
 					case 'joinedChat':
 						var act = new Actions();
-						act.userJoinedChat();
+						act.userJoinedChat(message.data);
 						break;
 					case 'updatedUsers':
 						var act = new Actions();
