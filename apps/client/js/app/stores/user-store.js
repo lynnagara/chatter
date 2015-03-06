@@ -9,18 +9,21 @@ var _connectWebsocket = (text) => {
 	apiCall.connectWebsocket(text);
 }
 
-var _userList = []
+var _userList = [];
+
+var _connectedUser = null;
 
 var _updateUserList = (users) => {
 	_userList = users;
 }
 
+var _updateConnectedUser = (connectedUser) => {
+	_connectedUser = connectedUser;
+}
+
+
 
 class UserStore {
-
-	connectedUser () {
-		return 'lyn';
-	}
 
 	constructor (props) {
 		let CHANGE_EVENT = 'change';
@@ -41,6 +44,10 @@ class UserStore {
 
 			getUserlist: () => {
 				return _userList;
+			},
+
+			getConnectedUser: () => {
+				return _connectedUser;
 			}
 
 		});
@@ -68,7 +75,9 @@ class UserStore {
 					this.emitChange();
 					break;
 				case Constants.USER_JOINED_CHAT:
+					// _updateConnectedUser()
 					_updateUserList(action.data.usernames);
+					_updateConnectedUser(action.data.connectedUser);
 					this.emitChange();
 					break;
 		    default:

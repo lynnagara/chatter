@@ -19,9 +19,22 @@ class UserList extends React.Component {
 
 	render() {
 		var users = this.state.users;
+		var userList;
+
+		if (!users.length) {
+			userList = <div>No users online right now</div>
+		} else {
+			var listitems = users.map(user => {
+				return <li>{user}</li>;
+			});
+			userList = <ul>{listitems}</ul>
+
+		}
+
 		return (
 			<div>
-				This is the list of users -> {users}
+				<div>People online now</div>
+				{userList}
 			</div>
 		);
 	}

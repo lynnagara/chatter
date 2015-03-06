@@ -33,7 +33,8 @@ class Actions {
 	userJoinedChat (data) {
 		AppDispatcher.handleServerAction({
       actionType: Constants.USER_JOINED_CHAT,
-      usernames: data.usernames
+      usernames: data.usernames,
+      connectedUser: data.connectedUser
     });
 	}
 
