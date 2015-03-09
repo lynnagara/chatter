@@ -3,23 +3,22 @@ import Actions from '../actions/actions.js';
 class WebAPIUtils {
 
 	constructor() {
-
 	}
 
 	connectWebsocket(username) {
-		var ws = new WebSocket('ws://' + location.host);
-		ws.onopen = (event) => {
+		this.ws = new WebSocket('ws://' + location.host);
+		this.ws.onopen = (event) => {
 			// Check if the username is valid
-			ws.send(JSON.stringify({username: username, action: 'setUsername'}));
+			this.ws.send(JSON.stringify({username: username, action: 'setUsername'}));
 
 			var act = new Actions();
 			act.userConnectionSuccess();
 		};
-		ws.onerror = (error) => {
+		this.ws.onerror = (error) => {
 			var act = new Actions();
 			act.userConnectionFailure();
 		};
-		ws.onmessage = (data) => {
+		this.ws.onmessage = (data) => {
 			var message = JSON.parse(data.data);
 			if (message.action) {
 				switch (message.action) {
@@ -27,19 +26,28 @@ class WebAPIUtils {
 						var act = new Actions();
 						act.userJoinedChat(message.data);
 						break;
-					case 'updatedUsers':
+					// case 'updatedUsers':
+					// 	var act = new Actions();
+					// 	act.updateUserList();
+					// 	break;
+					case 'newMessageAvailable':
 						var act = new Actions();
-						act.updateUserList();
-						break;
+						act.newMessageAvailable(message.data);
 				default:
 					// nada
 				}				
 			}
 		}
+	}
 
-
+	postUserMessage(username, message) {
+		if (this.ws) {
+			this.ws.send(JSON.stringify({username: username, message: message, action: 'postUserMessage'}));			
+		}
 	}
 
 }
 
-export default WebAPIUtils;
+var webapiutils = new WebAPIUtils();
+
+export default webapiutils;

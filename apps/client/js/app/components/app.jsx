@@ -1,29 +1,23 @@
 import Nav from './nav.jsx';
 import JoinChat from './joinchat.jsx';
 import ChatWindow from './chatwindow.jsx';
+import Conversation from './conversation.jsx';
 import UserList from './userlist.jsx';
 import UserStore from '../stores/user-store';
 
 
 class APP extends React.Component {
 
-	// Method to retrieve application state from store
-	getAppState () {
-	  return {
-	  	connectedUser: 'lyn'
-	  };
-	}
-
 	constructor(props) {
+		super(props);
+		this._onChange = this._onChange.bind(this);
 		this.state = {
-			connectedUser: null
+			connectedUser: UserStore.getConnectedUser()
 		}
-		// this.state = this.getAppState();
-		// super(props);
 	}
 
 	_onChange () {
-    // this.setState(getAppState());
+    this.setState({connectedUser: UserStore.getConnectedUser()});
   }
 
   componentDidMount () {
@@ -35,11 +29,15 @@ class APP extends React.Component {
 		return (
 			<div>
 				<Nav />
-				<div>{connectedUser}</div>
 				<div className="row">
 					<div className="nine columns" id="chatColumn">
-						<JoinChat />
-						<ChatWindow user={connectedUser} />
+						{ this.state.connectedUser ? 
+								<div className="conversation-wrap">
+									<div className="conversation"><Conversation /></div>
+									<div className="add-message"><ChatWindow user={connectedUser} /></div>
+								</div> : 
+								<JoinChat />
+						}
 					</div>
 					<div className="three columns" id="userColumn">
 						<UserList />

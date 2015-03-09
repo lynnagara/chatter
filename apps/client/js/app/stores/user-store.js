@@ -4,12 +4,12 @@ import {EventEmitter} from 'events';
 import WebAPIUtils from '../utils/webapi.js';
 
 
-var _connectWebsocket = (text) => {
-	var apiCall = new WebAPIUtils();
-	apiCall.connectWebsocket(text);
+var _connectWebsocket = (username) => {
+	WebAPIUtils.connectWebsocket(username);
 }
 
 var _userList = [];
+var _messages = [];
 
 var _connectedUser = null;
 
@@ -19,6 +19,14 @@ var _updateUserList = (users) => {
 
 var _updateConnectedUser = (connectedUser) => {
 	_connectedUser = connectedUser;
+}
+
+var _postUserMessage = (username, message) => {
+	WebAPIUtils.postUserMessage(username, message);
+}
+
+var _newMessageAvailable = (username, message) => {
+	// _messages.push('message');
 }
 
 
@@ -53,12 +61,11 @@ class UserStore {
 		});
 
 		AppDispatcher.register(action => {
-		  var text;
 		  switch(action.actionType) {
 				case Constants.CONNECT_USER:
-					text = action.text.trim();
-					if (text !== '') {
-						_connectWebsocket(text);
+					var username = action.data.username.trim();
+					if (username !== '') {
+						_connectWebsocket(username);
 					}
 					this.emitChange();
 					// Store.emitChange();
@@ -75,10 +82,18 @@ class UserStore {
 					this.emitChange();
 					break;
 				case Constants.USER_JOINED_CHAT:
-					// _updateConnectedUser()
-					_updateUserList(action.data.usernames);
-					_updateConnectedUser(action.data.connectedUser);
-					this.emitChange();
+					if (!_connectedUser) {
+						_updateUserList(action.data.usernames);
+						_updateConnectedUser(action.data.connectedUser);
+						this.emitChange();						
+					}
+					break;
+				case Constants.POST_USER_MESSAGE:
+					_postUserMessage(action.data.user, action.data.message);
+					break;
+				case Constants.NEW_MESSAGE_AVAILABLE:
+					console.log(action.data);
+					_newMessageAvailable(action.data.user, action.data.message);
 					break;
 		    default:
 		      // nada

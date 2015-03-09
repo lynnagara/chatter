@@ -37,6 +37,15 @@ function setUsername(username, ws, connection) {
 	}
 }
 
+function postUserMessage(username, message) {
+  // Broadcast new message to all connected clients
+    connectedClients.forEach(function(client) {
+      // if (client.connection !== connection) {
+        client.connection.sendUTF(JSON.stringify({action: 'newMessageAvailable', data: {username: username, message: message}}));
+      // }
+    });
+}
+
 
 var websocketHandler = function (request, ws) {
 
@@ -51,12 +60,12 @@ var websocketHandler = function (request, ws) {
   				case 'setUsername':
   					setUsername(data.username, ws, connection);
   					break;
-  				case 'sendMessage':
+  				case 'postUserMessage':
+            postUserMessage(data.username, data.message);
   					break;
   				default:
   					// nada
   			}
-
       }
     });
 

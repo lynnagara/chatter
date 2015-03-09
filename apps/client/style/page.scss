@@ -10,10 +10,31 @@ html, body, #app {
 .row {
 	position: absolute;
 	width: 100%;
-	height: 100%; // Fallback for older browers
+	height: 100%;  // Fallback for older browers
 	height: calc(100% - 52px);
 }
 
 #chatColumn, #userColumn {
 	height: 100%;
+}
+
+#chatColumn {
+	.conversation-wrap {
+		height: 100%;
+	}
+
+	.conversation {
+		height: calc(100% - 152px);
+
+	}
+	.add-message {
+		height: 100px;
+		width: 100%;
+		padding: 10px;
+		textarea {
+			min-height: 50px;
+			height: 50px;
+			width: 100%;
+		}
+	}
 }

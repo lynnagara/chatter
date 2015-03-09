@@ -22,7 +22,7 @@ class JoinChat extends React.Component {
 		event.preventDefault();
 		if (this.state.username) {
 			var act = new Actions();
-			act.connectUser(this.state.username);			
+			act.connectUser({username: this.state.username});			
 		}
 	}
 
@@ -37,7 +37,6 @@ class JoinChat extends React.Component {
 				<div>
 					<label>Join the chat</label>
 				</div>
-				<div>connected user {connectedUser}</div>
 				<div>
 					<input type="text" value={this.state.username} onChange={this.handleChangeName.bind(this)} placeholder="Enter your name" />
 				</div>

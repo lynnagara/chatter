@@ -16,7 +16,7 @@ const AppDispatcher = Object.assign(new Dispatcher(), {
   handleViewAction: function (action) {
     const payload = {
       actionType: action.actionType,
-      text: action.text
+      data: action
     };
     this.dispatch(payload);
   }

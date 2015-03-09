@@ -6,10 +6,18 @@ class Actions {
 
 	}
 
-	connectUser (username) {
+	connectUser (data) {
 		AppDispatcher.handleViewAction({
       actionType: Constants.CONNECT_USER,
-      text: username
+      username: data.username
+    });
+	}
+
+	postMessage (data) {
+		AppDispatcher.handleViewAction({
+      actionType: Constants.POST_USER_MESSAGE,
+      user: data.connectedUser.username,
+      message: data.message
     });
 	}
 
@@ -38,8 +46,12 @@ class Actions {
     });
 	}
 
-	updateUserList () {
-
+	newMessageAvailable (data) {
+		AppDispatcher.handleServerAction({
+			actionType: Constants.NEW_MESSAGE_AVAILABLE,
+			username: data.username,
+			message: data.message
+		});		
 	}
 
 }
