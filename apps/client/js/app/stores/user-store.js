@@ -26,7 +26,7 @@ var _postUserMessage = (username, message) => {
 }
 
 var _newMessageAvailable = (username, message) => {
-	// _messages.push('message');
+	_messages.push({username:username, message:message, key:_messages.length});
 }
 
 
@@ -52,6 +52,10 @@ class UserStore {
 
 			getUserlist: () => {
 				return _userList;
+			},
+
+			getMessages: () => {
+				return _messages;
 			},
 
 			getConnectedUser: () => {
@@ -85,15 +89,15 @@ class UserStore {
 					if (!_connectedUser) {
 						_updateUserList(action.data.usernames);
 						_updateConnectedUser(action.data.connectedUser);
-						this.emitChange();						
+						this.emitChange();
 					}
 					break;
 				case Constants.POST_USER_MESSAGE:
 					_postUserMessage(action.data.user, action.data.message);
 					break;
 				case Constants.NEW_MESSAGE_AVAILABLE:
-					console.log(action.data);
-					_newMessageAvailable(action.data.user, action.data.message);
+					_newMessageAvailable(action.data.username, action.data.message);
+					this.emitChange();
 					break;
 		    default:
 		      // nada
