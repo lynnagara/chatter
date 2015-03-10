@@ -26,6 +26,11 @@ class APP extends React.Component {
 
 	render() {
 		var connectedUser = this.state.connectedUser;
+		var userlist;
+		if (this.state.connectedUser) {
+			userlist = <UserList />
+		}
+
 		return (
 			<div>
 				<Nav />
@@ -40,7 +45,7 @@ class APP extends React.Component {
 						}
 					</div>
 					<div className="three columns" id="userColumn">
-						<UserList />
+						{userlist}
 					</div>
 				</div>
 			</div>
