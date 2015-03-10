@@ -29,9 +29,7 @@ function setUsername(username, ws, connection) {
 
     // rebroadcast command to all other clients
     connectedClients.forEach(function(client) {
-      if (client.connection !== connection) {
-        client.connection.sendUTF(JSON.stringify({action: 'updatedUsers', data: {usernames: getUsernames(connectedClients)}}));
-      }
+      client.connection.sendUTF(JSON.stringify({action: 'updatedUsers', data: {usernames: getUsernames(connectedClients)}}));
     });
 
 	}
@@ -44,6 +42,16 @@ function postUserMessage(username, message) {
         client.connection.sendUTF(JSON.stringify({action: 'newMessageAvailable', data: {username: username, message: message}}));
       // }
     });
+}
+
+function removeClosedConnections() {
+  connectedClients = connectedClients.filter(function(client) {
+    if (client.connection.state === 'closed') {
+      return false;
+    } else {
+      return true;
+    }
+  });
 }
 
 
@@ -81,10 +89,9 @@ var websocketHandler = function (request, ws) {
    //  });
 
 
-
-    connection.on('close', function(connection) {
-        // close user connection
-        console.log('the connection was closed')
+    connection.on('close', function() {
+      // Remove from the list of connected users
+      removeClosedConnections();
     });
 
 
