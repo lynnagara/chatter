@@ -22,7 +22,8 @@ var server = http.createServer(function(req, res) {
   });
 	return;
 });
-server.listen(5000, function() { });
+var port = process.env.PORT || 5000;
+server.listen(port, function() { });
 
 // create the server
 wsServer = new websocketserver({
