@@ -1,0 +1,30 @@
+html, body, p, div {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+html, body, #app {
+  height: 100%; }
+
+.row {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  height: calc(100% - 52px); }
+
+#chatColumn, #userColumn {
+  height: 100%; }
+
+#chatColumn {
+  padding: 10px; }
+  #chatColumn .conversation-wrap {
+    height: 100%; }
+  #chatColumn .conversation {
+    height: calc(100% - 152px); }
+  #chatColumn .add-message {
+    height: 100px;
+    width: 100%;
+    padding: 10px; }
+    #chatColumn .add-message textarea {
+      min-height: 50px;
+      height: 50px;
+      width: 100%; }
