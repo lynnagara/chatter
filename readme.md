@@ -22,4 +22,4 @@ Run `gulp server`
 
 ### Demo site
 
-*
+* https://chatter3.herokuapp.com/
