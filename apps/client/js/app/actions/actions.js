@@ -28,6 +28,14 @@ class Actions {
     });
 	}
 
+  updateUserList (data) {
+    AppDispatcher.handleServerAction({
+      actionType: Constants.UPDATE_USER_LIST,
+      usernames: data.usernames
+    });
+
+  }
+
 	userConnectionFailure () {
 		AppDispatcher.handleServerAction({
       actionType: Constants.USER_CONNECTION_FAILURE

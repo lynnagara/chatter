@@ -92,6 +92,10 @@ class UserStore {
 						this.emitChange();
 					}
 					break;
+				case Constants.UPDATE_USER_LIST:
+					_updateUserList(action.data.usernames);
+					this.emitChange();
+					break;
 				case Constants.POST_USER_MESSAGE:
 					_postUserMessage(action.data.user, action.data.message);
 					break;

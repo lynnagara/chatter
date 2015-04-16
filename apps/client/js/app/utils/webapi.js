@@ -26,10 +26,10 @@ class WebAPIUtils {
 						var act = new Actions();
 						act.userJoinedChat(message.data);
 						break;
-					// case 'updatedUsers':
-					// 	var act = new Actions();
-					// 	act.updateUserList();
-					// 	break;
+					case 'updatedUsers':
+						var act = new Actions();
+						act.updateUserList(message.data);
+						break;
 					case 'newMessageAvailable':
 						var act = new Actions();
 						act.newMessageAvailable(message.data);
