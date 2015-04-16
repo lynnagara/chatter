@@ -40,7 +40,7 @@ gulp.task('node', function () {
 	node = spawn('node', ['app.js'], {stdio: 'inherit'})
 });
 
-gulp.task('default', ['webpack', 'copy', 'css']);
+gulp.task('default', ['webpack', 'copy', 'css', 'usemin']);
 
 gulp.task('watch', function () {
 	gulp.watch('apps/client/**/*.*', ['default']);
