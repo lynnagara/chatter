@@ -14,7 +14,6 @@
     "gulp-usemin": "^0.3.11",
     "gulp-webpack": "^1.2.0",
     "jsx-loader": "^0.12.2",
-    "node-static": "^0.7.6",
     "url": "^0.10.2",
     "webpack": "^1.6.0",
     "ws": "^0.7.1"
@@ -26,7 +25,8 @@
   "dependencies": {
     "flux": "^2.0.1",
     "keymirror": "^0.1.1",
-    "websocket": "^1.0.17"
+    "websocket": "^1.0.17",
+    "node-static": "^0.7.6"
   },
   "scripts": {
     "start": "node app.js"
