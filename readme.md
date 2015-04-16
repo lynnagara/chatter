@@ -1,14 +1,15 @@
 # Chatter
 
-Chatter is a chat app 
-
-using websockets, react, es6.
+Chatter is a simple chat application built using websockets, React, and es6.
 
 ### Dependencies
 
 * Node JS
+* Npm
+* Bower
+* Babel (6 to 5)
 
-### Bootstrap
+### Quick start
 
 Run `./setup.sh`
 
@@ -22,4 +23,4 @@ Run `gulp server`
 
 ### Demo site
 
-* https://chatter3.herokuapp.com/
+View the demo: https://chatter3.herokuapp.com/

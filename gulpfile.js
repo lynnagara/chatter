@@ -23,8 +23,6 @@ gulp.task('webpack', function() {
 gulp.task('copy', function () {
 	gulp.src('apps/client/templates/**/*')
 		.pipe(gulp.dest('dist/templates'));
-	gulp.src('apps/client/bower_components/**/*')
-		.pipe(gulp.dest('dist/bower_components'));
 	gulp.src('apps/client/index.html')
 		.pipe(gulp.dest('dist'));
 });
